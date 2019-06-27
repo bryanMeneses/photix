@@ -23,10 +23,10 @@ class Header extends Component {
     }
     render() {
         return (
-            <Navbar className="customNav" collapseOnSelect expand='md' variant="dark" fixed='top'>
+            <Navbar className="customNav" collapseOnSelect expand='lg' variant="dark" fixed='top'>
                 <Navbar.Brand style={{ margin: '2px 0 0 5px', fontFamily: "'Calligraffitti', cursive" }} href="/">Photix</Navbar.Brand>
-                {/* <p className="text-muted" style={{ fontSize: '.75em', margin: '1.5em 0 0 5px', float: 'left' }}>
-                    <i className="fas fa-bolt"></i> Powered by Unsplash API</p> */}
+                <p className="text-muted" style={{ fontSize: '.75em', margin: '1.5em 0 0 5px', float: 'left' }}>
+                    <i className="fas fa-bolt"></i> Powered by Unsplash API</p>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto">
