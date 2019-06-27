@@ -1,33 +1,147 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 576px) { 
+  img.respProfilePic {
+    width:45px !important;
+    height:45px !important;
   }
-  to {
-    transform: rotate(360deg);
+  h1 {
+    font-size: 2.5rem !important
   }
+  .respTextInput {
+    width: 150px !important;
+  }
+  .respDetailsPara {
+    font-size: 14px;
+  }
+  .respDetailsLink {
+    font-size: 12px;
+  }
+  h5 {
+    font-size: 1rem !important
+  }
+  .center p {
+    font-size: 1rem !important
+  }
+  .myBtn {
+    font-size: 0.9rem !important;
+    padding: 10px 50px !important;    
+  }
+  .myBtn-4:before {
+    font-size: 100% !important;
+  }
+  
+ }
+
+hr.hrStyle {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
+.whiteFont {
+  color: rgb(255, 255, 255)!important;
+}
+.whiteFont:hover {
+  background-color: gray
+}
+nav.customNav {
+  background: rgb(22,22,24) !important;;
+}
+
+div.images {
+  line-height: 0;
+   
+  -webkit-column-count: 2;
+  -webkit-column-gap:   10px;
+  -moz-column-count:    2;
+  -moz-column-gap:      10px;
+  column-count:         2;
+  column-gap:           10px;  
+}
+
+@media (min-width: 768px) {
+  div.images {
+    line-height: 0;
+     
+    -webkit-column-count: 3;
+    -webkit-column-gap:   10px;
+    -moz-column-count:    3;
+    -moz-column-gap:      10px;
+    column-count:         3;
+    column-gap:           10px;  
+  }
+
+}
+
+
+div.images img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  height: auto !important;
+}
+div.fixedBGLatest {
+	/* This can stay the sane for all Carousel Items.
+	But, we can map through an API call to return Carousel Items with a style{{new background image}} */ 
+    background-size: cover;
+    height: 550px;
+    background-repeat: no-repeat;
+    position: relative;
+    /* background-attachment: fixed; */
+    background-position: center
+}
+
+span.text-link {
+  cursor: pointer
+}
+
+img.landscapeOrient {
+ height: 180px
+}
+img.portraitOrient {
+  height: 300px
+}
+
+@media (min-width: 413px) { 
+  img.portraitOrient {
+    height: 500px
+  }
+  img.landscapeOrient {
+    height: 300px
+   }
+ }
+@media (min-width: 576px) { 
+  /* img.portraitOrient {
+    height: 500px
+  } */
+  img.landscapeOrient {
+    height: 350px
+   }
+ }
+
+@media (min-width: 768px) { 
+  img.portraitOrient {
+    height: 600px
+  }
+  img.landscapeOrient {
+    height: 500px
+   }
+ }
+
+@media (min-width: 992px) { 
+  img.portraitOrient {
+    height: 700px
+  }
+  img.landscapeOrient {
+    height: 600px
+   }
+ }
+
+@media (min-width: 1200px) { 
+  img.portraitOrient {
+    height: 800px
+  }
+  img.landscapeOrient {
+    height: 700px
+   }
+ }

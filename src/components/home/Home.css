@@ -1,0 +1,104 @@
+div.fixedBackground {
+	/* This can stay the sane for all Carousel Items.
+	But, we can map through an API call to return Carousel Items with a style{{new background image}} */ 
+    background-size: cover;
+    height: 100vh;
+    background-repeat: no-repeat;
+    position: relative;
+    background-attachment: fixed;
+    background-position: center
+}
+div.center {
+	position: absolute;
+	z-index:12;
+	top:40%;
+	width:100%;
+	text-align:center;
+
+}
+.carousel-item-style {
+	color: white;
+	position: relative;
+	top: 80%;
+}
+
+/* Styling for button */
+
+/* General button style (reset) */
+.myBtn {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: none;
+	cursor: pointer;
+	padding: 18.75px 60px;
+	display: inline-block;
+	margin: 15px 30px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.myBtn:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.icon-arrow-right:before {
+    font-family: "Font Awesome 5 Free"; 
+	content: "\f061";
+}
+
+
+.myBtn-4 {
+	border-radius: 50px;
+	border: 3px solid #fff;
+	color: #fff;
+	overflow: hidden;
+}
+
+.myBtn-4:active {
+	border-color: darkgray;
+	color: darkgray;
+}
+
+.myBtn-4:hover {
+	background: #020202;
+}
+
+.myBtn-4:before {
+	position: absolute;
+	height: 100%;
+	font-size: 125%;
+	line-height: 3;
+	color: #fff;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.myBtn-4:active:before {
+	color: darkgray;
+}
+
+/* Button 4c */
+.myBtn-4c:before {
+	left: 70%;
+	opacity: 0;
+	top: 0;
+}
+
+.myBtn-4c:hover:before {
+	left: 80%;
+	opacity: 1;
+}
