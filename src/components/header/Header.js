@@ -31,9 +31,9 @@ class Header extends Component {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto">
                         <Link to="/" className="nav-link mr-3 whiteFont"><i className="fas fa-home"></i> Home</Link>
-                        <Link to="/about" className="nav-link mr-3 whiteFont"><i className="fab fa-adn"></i> About</Link>
                         <Link to="/latest" className="nav-link mr-3 whiteFont">
                             <i className="fas fa-rss"></i> Latest</Link>
+                        <Link to="/about" className="nav-link mr-3 whiteFont"> About</Link>
                         <Form onSubmit={this.onSearchSubmit} style={{ margin: 'auto' }} inline>
                             <FormControl required value={this.state.searchfield} onChange={this.onSearchChange} type="text" placeholder="Search" className="mr-2 respTextInput" />
                             <Button type="submit" variant="outline-light">Search</Button>
