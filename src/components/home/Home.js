@@ -14,7 +14,8 @@ const unsplash = new Unsplash({
 
 class Home extends Component {
     state = {
-        randomImages: []
+        randomImages: [],
+        requestError: false
     }
 
     componentDidMount() {
@@ -24,12 +25,34 @@ class Home extends Component {
         })
             .then(toJson)
             .then(json => {
-                this.setState({ randomImages: json })
+                this.setState({ randomImages: json, requestError: false })
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+                this.setState({ requestError: true })
+            }
+            );
     }
     render() {
-        const { randomImages } = this.state
+        const { randomImages, requestError } = this.state
+        if (requestError) {
+            return (
+                <div>
+                    <div style={{
+                        width: '100%',
+                        margin: 'auto',
+                        position: 'absolute',
+                        top: '30%',
+
+                    }} >
+
+                        <h1 className="display-4">:( Whoops...</h1>
+                        <h3>something went wrong!</h3>
+                        <h5 className="w-75 my-4 mx-auto">There is a limit to how many photos we can request. Please check back in a bit!</h5>
+                    </div>
+                </div>
+            )
+        }
         if (!randomImages[0]) {
             return (
                 <Spinner
