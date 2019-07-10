@@ -1,9 +1,6 @@
 import React from 'react';
 import './App.css';
 
-//Todos
-//Media queries for Images component, so images maintain good width and reducing column count in App.css
-
 //Dependencies
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 

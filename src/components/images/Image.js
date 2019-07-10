@@ -12,7 +12,7 @@ class Image extends Component {
         const { id, src, alt, handleStateChange } = this.props
 
         return (
-            <Link to={`/details/${id}`}>
+            <Link className='wow fadeIn' to={`/details/${id}`}>
                 <img
                     id={id}
                     src={src}

@@ -49,7 +49,17 @@ nav.customNav {
   background: rgb(22,22,24) !important;;
 }
 
-div.images {
+/* 
+The following code block contains the code for CSS columns that are horizontally ordered.
+To use:
+1) Comment out the other div.images styling and uncomment the folowing 3 code blocks right below this comment.
+
+2) Then, you will have to add <div></div> tages in between the Image component in the Images component.
+
+3) In those div tags, add the classNames "wow fadeIn". Currently, there are in the Image component's <Link> tags. You will have to remove them from there.
+*/
+
+/* div.images {
   line-height: 0;
    
   -webkit-column-count: 2;
@@ -72,14 +82,29 @@ div.images {
     column-gap:           10px;  
   }
 
-}
+} */
 
-
-div.images img {
-  /* Just in case there are inline attributes */
+/* div.images img {
+  Just in case there are inline attributes
   width: 100% !important;
   height: auto !important;
+} */
+
+div.images img {
+  /* Just in case there are inline attributes  */
+  width: 42% !important;
+  height: auto !important;
+  }
+
+@media (min-width: 768px) {
+  div.images img {
+  /* Just in case there are inline attributes  */
+  width: 30% !important;
+
+  }
 }
+
+
 div.fixedBGLatest {
 	/* This can stay the sane for all Carousel Items.
 	But, we can map through an API call to return Carousel Items with a style{{new background image}} */ 

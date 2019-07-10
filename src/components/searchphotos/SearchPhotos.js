@@ -89,7 +89,7 @@ class SearchPhotos extends Component {
         const { images, searchQuery } = this.state
         let errMsg = this.state.error ? <h3>Whoops, "{searchQuery}" isn't in our photo album! Try searching something else.</h3> : null
         return (
-            <div style={{ width: '80%', margin: '20px auto', paddingTop: '76px' }}>
+            <div style={{ width: '90%', margin: '20px auto', paddingTop: '76px' }}>
                 {errMsg}
                 {this.state.error ? null : (
                     <div className="gallery" ref={element => { this.galleryElement = element; }}>
@@ -100,16 +100,16 @@ class SearchPhotos extends Component {
                         <div className="images">
                             {images.map(image => {
                                 return (
-                                    <div className="wow fadeIn">
-                                        <Image
-                                            image={image}
-                                            key={image.id}
-                                            id={image.id}
-                                            src={image.urls.regular}
-                                            alt={image.description}
-                                            handleStateChange={this.handleStateChange}
-                                        />
-                                    </div>
+
+                                    <Image
+                                        image={image}
+                                        key={image.id}
+                                        id={image.id}
+                                        src={image.urls.regular}
+                                        alt={image.description}
+                                        handleStateChange={this.handleStateChange}
+                                    />
+
                                 )
                             })}
                         </div>

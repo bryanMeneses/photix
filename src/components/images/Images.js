@@ -147,7 +147,7 @@ class Images extends Component {
                     </div>
                 )}
 
-                <div style={{ width: '80%', margin: '20px auto' }} className="gallery" ref={element => { this.galleryElement = element; }}>
+                <div style={{ width: '90%', margin: '20px auto' }} className="gallery" ref={element => { this.galleryElement = element; }}>
                     <InfiniteScroll
                         dataLength={this.state.images.length}
                         next={this.fetchMoreImages}
@@ -159,17 +159,14 @@ class Images extends Component {
                         <div className="images" >
                             {images.map(image => {
                                 return (
-                                    <div className='wow fadeIn' key={image.id}>
-
-                                        <Image
-                                            image={image}
-                                            id={image.id}
-                                            src={image.urls.regular}
-                                            alt={image.description}
-                                            handleStateChange={this.handleStateChange}
-                                        />
-                                    </div>
-
+                                    <Image
+                                        key={image.id}
+                                        image={image}
+                                        id={image.id}
+                                        src={image.urls.regular}
+                                        alt={image.description}
+                                        handleStateChange={this.handleStateChange}
+                                    />
                                 )
                             })}
                         </div>
