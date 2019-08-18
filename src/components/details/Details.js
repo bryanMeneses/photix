@@ -32,7 +32,7 @@ class Details extends Component {
 
         const monthNum = d.getMonth();
 
-        var month;
+        let month;
 
         switch (monthNum) {
             case 0:
@@ -75,7 +75,7 @@ class Details extends Component {
                 month = monthNum
         }
 
-        var day = d.getDate().toString();
+        let day = d.getDate().toString();
         day = day.length > 1 ? day : '0' + day;
 
         return `${month} ${day}, ${year}`;
@@ -86,7 +86,6 @@ class Details extends Component {
             .then(toJson)
             .then(data => {
                 this.setState({ image: data })
-                console.log(this.state.image)
             })
             .catch(err => console.log(err));
     }
@@ -156,7 +155,7 @@ class Details extends Component {
                                         <h5>{image.user.name}</h5>
                                         <a className="text-muted respDetailsLink" href={`https://unsplash.com/@${image.user.username}`} target="blank">@{image.user.username}</a>
                                     </div>
-                                    <div style={{ fontSize: ".85em" }} className='my-2'><i className="fas fa-map-marker-alt"></i> {image.location ? (`Taken in ${image.location.title}`) : (<i>Taken somewhere on earth</i>)} </div>
+                                    <div style={{ fontSize: ".85em" }} className='my-2'><i className="fas fa-map-marker-alt"></i> {image.location.title !== "" ? (`Taken in ${image.location.title}`) : (<i>Taken somewhere on earth</i>)} </div>
                                 </span>
                             </Row>
                             <hr />

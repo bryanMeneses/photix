@@ -49,47 +49,6 @@ nav.customNav {
   background: rgb(22,22,24) !important;;
 }
 
-/* 
-The following code block contains the code for CSS columns that are horizontally ordered.
-To use:
-1) Comment out the other div.images styling and uncomment the folowing 3 code blocks right below this comment.
-
-2) Then, you will have to add <div></div> tages in between the Image component in the Images component.
-
-3) In those div tags, add the classNames "wow fadeIn". Currently, there are in the Image component's <Link> tags. You will have to remove them from there.
-*/
-
-/* div.images {
-  line-height: 0;
-   
-  -webkit-column-count: 2;
-  -webkit-column-gap:   10px;
-  -moz-column-count:    2;
-  -moz-column-gap:      10px;
-  column-count:         2;
-  column-gap:           10px;  
-}
-
-@media (min-width: 768px) {
-  div.images {
-    line-height: 0;
-     
-    -webkit-column-count: 3;
-    -webkit-column-gap:   10px;
-    -moz-column-count:    3;
-    -moz-column-gap:      10px;
-    column-count:         3;
-    column-gap:           10px;  
-  }
-
-} */
-
-/* div.images img {
-  Just in case there are inline attributes
-  width: 100% !important;
-  height: auto !important;
-} */
-
 div.images img {
   /* Just in case there are inline attributes  */
   width: 42% !important;
@@ -103,7 +62,6 @@ div.images img {
 
   }
 }
-
 
 div.fixedBGLatest {
 	/* This can stay the sane for all Carousel Items.
