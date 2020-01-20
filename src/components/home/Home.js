@@ -83,14 +83,22 @@ class Home extends Component {
                         </Link>
                     </div>
 
-                    <Carousel controls={false} indicators={false} pauseOnHover={false}>
+                    <Carousel
+                        controls={false}
+                        indicators={false}
+                        pauseOnHover={false}
+                        touch={false}
+                    >
                         {randomImages.map(image => {
                             return (
-                                <Carousel.Item key={image.id} className='fixedBackground' style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(${image.urls.regular})` }}>
+                                <Carousel.Item
+                                    key={image.id}
+                                    className='fixedBackground'
+                                    style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(${image.urls.regular})` }}>
                                     <div className="carousel-item-style">
                                         <p>Taken by {image.user.name}</p>
                                         {image.user.portfolio_url ? (<p><a style={{ color: 'white' }} target='blank' href={image.user.portfolio_url}>See Profile</a></p>) : null}
-                                        {image.location ? (<p>Taken in {image.location.city}, {image.location.country}</p>) : null}
+                                        {image.location.title !== null ? (`Taken in ${image.location.title}`) : (<i>Taken somewhere on earth</i>)}
                                     </div>
                                 </Carousel.Item>
                             )

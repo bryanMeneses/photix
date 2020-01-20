@@ -163,7 +163,7 @@ class Images extends Component {
                                         key={image.id}
                                         image={image}
                                         id={image.id}
-                                        src={image.urls.regular}
+                                        src={image.urls.small}
                                         alt={image.description}
                                         handleStateChange={this.handleStateChange}
                                     />

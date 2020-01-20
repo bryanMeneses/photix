@@ -58,11 +58,13 @@ class SearchPhotos extends Component {
         }
         return false;
     }
+
     handleStateChange = () => {
         this.setState({
             isLoaded: this.imagesLoaded(this.galleryElement),
         });
     }
+
     renderLoadingHeader = () => {
         if (this.state.isLoaded) {
             // Render nothing if not loading
@@ -83,7 +85,6 @@ class SearchPhotos extends Component {
             </Spinner>
         )
     }
-
 
     render() {
         const { images, searchQuery } = this.state

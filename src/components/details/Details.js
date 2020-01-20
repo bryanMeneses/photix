@@ -155,7 +155,7 @@ class Details extends Component {
                                         <h5>{image.user.name}</h5>
                                         <a className="text-muted respDetailsLink" href={`https://unsplash.com/@${image.user.username}`} target="blank">@{image.user.username}</a>
                                     </div>
-                                    <div style={{ fontSize: ".85em" }} className='my-2'><i className="fas fa-map-marker-alt"></i> {image.location.title !== "" ? (`Taken in ${image.location.title}`) : (<i>Taken somewhere on earth</i>)} </div>
+                                    <div style={{ fontSize: ".85em" }} className='my-2'><i className="fas fa-map-marker-alt"></i> {image.location.title !== null ? (`Taken in ${image.location.title}`) : (<i>Taken somewhere on earth</i>)} </div>
                                 </span>
                             </Row>
                             <hr />
