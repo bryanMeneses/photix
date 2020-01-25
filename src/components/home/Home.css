@@ -22,6 +22,7 @@ div.center {
 	position: relative;
 	top: 70%;
 	font-size: 12px;
+	max-width: 160px;
 }
 
 /* Styling for button */
@@ -109,6 +110,7 @@ div.center {
 	font-size: 1.5rem; 
 	font-weight: 200;
 	letter-spacing: 0.45px;
+	max-width: 160px;
 }
 
 @media screen and (max-width: 400px) {
