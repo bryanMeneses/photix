@@ -8,6 +8,7 @@ div.fixedBackground {
     background-attachment: fixed;
     background-position: center
 }
+
 div.center {
 	position: absolute;
 	z-index:12;
@@ -19,7 +20,8 @@ div.center {
 .carousel-item-style {
 	color: white;
 	position: relative;
-	top: 80%;
+	top: 70%;
+	font-size: 12px;
 }
 
 /* Styling for button */
@@ -101,4 +103,16 @@ div.center {
 .myBtn-4c:hover:before {
 	left: 80%;
 	opacity: 1;
+}
+
+.Home__small {
+	font-size: 1.5rem; 
+	font-weight: 200;
+	letter-spacing: 0.45px;
+}
+
+@media screen and (max-width: 400px) {
+	 .carousel-item-style {
+			top: 80%;
+	 }
 }

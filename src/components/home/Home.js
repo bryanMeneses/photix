@@ -75,11 +75,11 @@ class Home extends Component {
 
                     <div className="center text-white">
                         <h1 className="display-4">Need new ideas?</h1>
-                        <p style={{ fontSize: "1.5rem", fontWeight: '200' }}>Take a look through our collections and start seeing a new perspective.</p>
+                        <p className="Home__small">Take a look through our collections and start seeing a new perspective.</p>
                         <Link to="/latest">
                             <button className="myBtn myBtn-4 myBtn-4c icon-arrow-right">
                                 See More
-                        </button>
+                            </button>
                         </Link>
                     </div>
 
