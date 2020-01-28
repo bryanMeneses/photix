@@ -144,8 +144,8 @@ class Images extends Component {
                                 </span>, {' '}
                                 <span
                                     className="text-link"
-                                    onClick={() => window.location.href = `/search/?query=wallpaper`}>
-                                    "wallpaper"
+                                    onClick={() => window.location.href = `/search/?query=nature`}>
+                                    "nature"
                                 </span>, or {' '}
                                 <span
                                     className="text-link"
