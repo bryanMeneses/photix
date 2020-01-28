@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 
 class Header extends Component {
@@ -10,32 +10,62 @@ class Header extends Component {
         }
     }
     onSearchSubmit = e => {
-        e.preventDefault()
-        const { searchfield } = this.state
+        e.preventDefault();
 
-        window.location.href = `/search/?query=${searchfield}`
+        const { searchfield } = this.state;
+
+        window.location.href = `/search/?query=${searchfield}`;
+
         this.setState({ searchfield: '' })
     }
 
-
     onSearchChange = e => {
-        this.setState({ searchfield: e.target.value })
+        this.setState({ [e.target.name]: e.target.value })
     }
+
+    routeChange = path => {
+        this.props.history.push(path);
+    }
+
     render() {
         return (
-            <Navbar className="customNav" collapseOnSelect expand='lg' variant="dark" fixed='top'>
+            <Navbar collapseOnSelect className="customNav" expand='lg' variant="dark" fixed='top'>
                 <Navbar.Brand style={{ margin: '2px 0 0 5px', fontFamily: "'Calligraffitti', cursive" }} href="/">Photix</Navbar.Brand>
                 <p className="text-muted" style={{ fontSize: '.75em', margin: '1.5em 0 0 5px', float: 'left' }}>
                     <i className="fas fa-bolt"></i> Powered by Unsplash API</p>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto">
-                        <Link to="/" className="nav-link mr-3 whiteFont"><i className="fas fa-home"></i> Home</Link>
-                        <Link to="/latest" className="nav-link mr-3 whiteFont">
-                            <i className="fas fa-rss"></i> Latest</Link>
-                        <Link to="/about" className="nav-link mr-3 whiteFont"> About</Link>
-                        <Form onSubmit={this.onSearchSubmit} style={{ margin: 'auto' }} inline>
-                            <FormControl required value={this.state.searchfield} onChange={this.onSearchChange} type="text" placeholder="Search" className="mr-2 respTextInput" />
+                        <Nav.Link
+                            eventKey={2}
+                            onClick={() => this.routeChange('/')}
+                            className="nav-link mr-3 whiteFont">
+                            <i className="fas fa-home"></i> Home
+                        </Nav.Link>
+                        <Nav.Link
+                            eventKey={2}
+                            onClick={() => this.routeChange("/latest")}
+                            className="nav-link mr-3 whiteFont">
+                            <i className="fas fa-rss"></i> Latest
+                        </Nav.Link>
+                        <Nav.Link
+                            eventKey={2}
+                            onClick={() => this.routeChange("/about")}
+                            className="nav-link mr-3 whiteFont"> About
+                        </Nav.Link>
+                        <Form
+                            onSubmit={this.onSearchSubmit}
+                            style={{ margin: 'auto' }}
+                            inline
+                        >
+                            <FormControl
+                                required value={this.state.searchfield}
+                                onChange={this.onSearchChange}
+                                type="text"
+                                placeholder="Search"
+                                className="mr-2 respTextInput"
+                                name="searchfield"
+                            />
                             <Button type="submit" variant="outline-light">Search</Button>
                         </Form>
                     </Nav>
@@ -45,4 +75,4 @@ class Header extends Component {
     }
 }
 
-export default Header
+export default withRouter(Header);

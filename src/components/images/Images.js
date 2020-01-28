@@ -53,13 +53,14 @@ class Images extends Component {
         const { searchfield } = this.state
 
         window.location.href = `/search/?query=${searchfield}`
+
         this.setState({ searchfield: '' })
     }
 
-
     onSearchChange = e => {
-        this.setState({ searchfield: e.target.value })
+        this.setState({ [e.target.name]: e.target.value })
     }
+
     fetchMoreImages = () => {
         const { start, count, images } = this.state
         this.setState({ start: start + count })
@@ -71,6 +72,7 @@ class Images extends Component {
             .catch(err => console.log(err))
 
     }
+
     imagesLoaded = parentNode => {
         const imgElements = parentNode.querySelectorAll("img");
 
@@ -81,11 +83,13 @@ class Images extends Component {
         }
         return false;
     }
+
     handleStateChange = () => {
         this.setState({
             isLoaded: this.imagesLoaded(this.galleryElement),
         });
     }
+
     renderLoadingHeader = () => {
         if (this.state.isLoaded) {
             // Render nothing if not loading
@@ -121,7 +125,15 @@ class Images extends Component {
                             <h5>Browse high definition images uploaded by users like you</h5>
 
                             <Form onSubmit={this.onSearchSubmit} inline>
-                                <FormControl style={{ width: '60%' }} required value={this.state.searchfield} onChange={this.onSearchChange} type="text" placeholder="Search" className="mr-sm-2 mr-2 my-3" />
+                                <FormControl
+                                    style={{ width: '60%' }}
+                                    required
+                                    value={this.state.searchfield}
+                                    name="searchfield"
+                                    onChange={this.onSearchChange}
+                                    type="text"
+                                    placeholder="Search"
+                                    className="mr-sm-2 mr-2 my-3" />
                                 <Button type="submit" variant="light">Search</Button>
                             </Form>
                             <p>Try something like {' '}
