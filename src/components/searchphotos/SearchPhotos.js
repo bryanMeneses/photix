@@ -6,7 +6,7 @@ import queryString from 'query-string';
 
 
 const unsplash = createApi({
-    apiUrl: "http://localhost:5000/unsplash"
+    apiUrl: "https://photix-server.netlify.app/.netlify/functions/index/unsplash"
 })
 
 class SearchPhotos extends Component {

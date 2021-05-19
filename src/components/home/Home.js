@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 
 const unsplash = createApi({
-    apiUrl: process.env.API_URL
+    apiUrl: "https://photix-server.netlify.app/.netlify/functions/index/unsplash"
 })
 
 class Home extends Component {

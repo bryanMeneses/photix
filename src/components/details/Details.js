@@ -4,7 +4,7 @@ import { Row, Col, Button, Spinner, OverlayTrigger, Tooltip } from 'react-bootst
 
 
 const unsplash = createApi({
-    apiUrl: "http://localhost:9000/.netlify/functions/index/unsplash"
+    apiUrl: "https://photix-server.netlify.app/.netlify/functions/index/unsplash"
 });
 
 class Details extends Component {

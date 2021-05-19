@@ -20,7 +20,7 @@ class Latest extends Component {
 
         // This call fills the main gallery's first 15 pictures
         // Don't know why Unsplash browser API isn't working but this call to our own api works just fine.
-        fetch(`http://localhost:9000/.netlify/functions/index/unsplash/photos?per_page=${perPage}&page=${page}`)
+        fetch(`https://photix-server.netlify.app/.netlify/functions/index/unsplash/photos?per_page=${perPage}&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 if (data.errors) {
