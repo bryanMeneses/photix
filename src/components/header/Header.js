@@ -14,9 +14,7 @@ class Header extends Component {
 
         const { searchfield } = this.state;
 
-        window.location.href = `/search/?query=${searchfield}`;
-
-        this.setState({ searchfield: '' })
+        window.location.href = `/search?query=${searchfield}`;
     }
 
     onSearchChange = e => {

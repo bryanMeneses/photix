@@ -6,9 +6,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 //Components
 import Header from './components/header/Header'
-import Images from './components/images/Images'
-import SearchPhotos from './components/searchphotos/SearchPhotos'
 import Home from './components/home/Home';
+import Latest from './components/images/Latest'
+import SearchPhotos from './components/searchphotos/SearchPhotos'
 import Details from './components/details/Details';
 import About from './components/about/About'
 
@@ -21,7 +21,7 @@ function App() {
 
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/latest" component={Images} />
+          <Route path="/latest" component={Latest} />
           <Route path="/search" component={SearchPhotos} />
           <Route path="/details/:id" component={Details} />
           <Route path="/about" component={About} />

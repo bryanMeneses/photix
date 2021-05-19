@@ -1,60 +1,60 @@
 import React, { Component } from 'react'
-import Unsplash, { toJson } from 'unsplash-js';
 import { Spinner, Form, FormControl, Button } from 'react-bootstrap'
 import Image from './Image';
 import InfiniteScroll from "react-infinite-scroll-component";
 
-
-
-
-const unsplash = new Unsplash({
-    applicationId: "a3d3bf11fb2edf1a7eb5f10a3f636a0559eba6dd199af83547d674f067d1f452",
-    secret: "ee0fb70bd9999de167f0b2fc0b86f026d48d713fe626d760d54f41246164ee7f",
-    headers: { 'Access-Control-Allow-Origin': '*' }
-});
-
-class Images extends Component {
+class Latest extends Component {
     constructor(props) {
         super(props)
         this.state = {
             collections: [],
             isLoaded: false,
             images: [],
-            start: 1,
-            count: 15,
-            randomImage: {
-                urls: {}
-            },
+            page: 1,
+            perPage: 15,
             searchfield: ''
         }
     }
     componentDidMount() {
-        const { start, count } = this.state
+        const { page, perPage } = this.state
 
         // This call fills the main gallery's first 15 pictures
-        unsplash.photos.listPhotos(start, count, 'popular')
-            .then(toJson)
+        // Don't know why Unsplash browser API isn't working but this call to our own api works just fine.
+        fetch(`http://localhost:9000/.netlify/functions/index/unsplash/photos?per_page=${perPage}&page=${page}`)
+            .then(res => res.json())
             .then(data => {
-                this.setState({ images: data })
+                if (data.errors) {
+                    console.log(data.erorrs);
+                } else {
+                    this.setState({
+                        images: data.response.results,
+                        page: page + 1,
+                    })
+                }
             })
-            .catch(err => console.log(err))
 
-        // This call gets a random photo for the top sections background image
-        unsplash.photos.getRandomPhoto({ query: 'black and white' })
-            .then(toJson)
-            .then(json => {
-                this.setState({ randomImage: json })
-            })
-            .catch(err => console.log(err));
+        // unsplash.photos.list({
+        //     page: 1,
+        //     perPage: 15,
+        // })
+        //     .then(result => {
+        //         console.log(result);
+        //         // if (result.errors) {
+        //             // console.log(result.errors);
+        //         // } else {
+        //             console.log(result);
+        //             this.setState({ images: result.response.results })
+        //         // }
+        //     })
+        //     .catch(err => console.log(err))
+
     };
 
     onSearchSubmit = e => {
         e.preventDefault()
         const { searchfield } = this.state
 
-        window.location.href = `/search/?query=${searchfield}`
-
-        this.setState({ searchfield: '' })
+        window.location.href = `/search?query=${searchfield}`
     }
 
     onSearchChange = e => {
@@ -62,15 +62,18 @@ class Images extends Component {
     }
 
     fetchMoreImages = () => {
-        const { start, count, images } = this.state
-        this.setState({ start: start + count })
-        unsplash.photos.listPhotos(start, count, 'latest')
-            .then(toJson)
+        const { page, perPage, images } = this.state
+        fetch(`http://localhost:5000/unsplash/photos?per_page=${perPage}&page=${page}`)
+            .then(res => res.json())
             .then(data => {
-                this.setState({ images: images.concat(data) })
+                if (data.errors) {
+                    console.log(data.erorrs);
+                } else {
+                    this.setState({ images: images.concat(data.response.results) })
+                }
             })
-            .catch(err => console.log(err))
 
+        this.setState({ page: page + 1 })
     }
 
     imagesLoaded = parentNode => {
@@ -112,13 +115,13 @@ class Images extends Component {
     }
 
     render() {
-        const { images, randomImage } = this.state
+        const { images } = this.state
         return (
-            <div className="animated fadeIn">
+            <div>
                 {(!images[0]) ? null : (
 
                     <div className="fixedBGLatest" style={{
-                        backgroundImage: `linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(${randomImage.urls.regular})`
+                        backgroundImage: `linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1620408991409-37585ff089a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MTkwMnwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMTE2NTMxNw&ixlib=rb-1.2.1&q=80&w=1080)`
                     }}>
                         <div className="text-left text-white" style={{ width: '80%', margin: "0px auto", paddingTop: '200px' }}>
                             <h1 className="display-4" style={{ fontWeight: '400' }} >Our Latest Collection</h1>
@@ -139,17 +142,17 @@ class Images extends Component {
                             <p>Try something like {' '}
                                 <span
                                     className="text-link"
-                                    onClick={() => window.location.href = `/search/?query=black and white`}>
+                                    onClick={() => window.location.href = `/search?query=black and white`}>
                                     "black and white"
                                 </span>, {' '}
                                 <span
                                     className="text-link"
-                                    onClick={() => window.location.href = `/search/?query=nature`}>
+                                    onClick={() => window.location.href = `/search?query=nature`}>
                                     "nature"
                                 </span>, or {' '}
                                 <span
                                     className="text-link"
-                                    onClick={() => window.location.href = `/search/?query=flower`}>
+                                    onClick={() => window.location.href = `/search?query=flower`}>
                                     "flower"
                                 </span>.
                             </p>
@@ -169,10 +172,10 @@ class Images extends Component {
                     >
                         {this.renderLoadingHeader()}
                         <div className="images" >
-                            {images.map(image => {
+                            {images.map((image, i) => {
                                 return (
                                     <Image
-                                        key={image.id}
+                                        key={i}
                                         image={image}
                                         id={image.id}
                                         src={image.urls.small}
@@ -191,4 +194,4 @@ class Images extends Component {
 
 
 
-export default Images
+export default Latest

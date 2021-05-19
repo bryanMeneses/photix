@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
-import Unsplash, { toJson } from 'unsplash-js';
+import {createApi} from 'unsplash-js';
 import Image from '../images/Image'
 import { Spinner } from 'react-bootstrap'
-
-const queryString = require('query-string');
-
+import queryString from 'query-string';
 
 
-export const unsplash = new Unsplash({
-    applicationId: "a3d3bf11fb2edf1a7eb5f10a3f636a0559eba6dd199af83547d674f067d1f452",
-    secret: "ee0fb70bd9999de167f0b2fc0b86f026d48d713fe626d760d54f41246164ee7f",
-    headers: { 'Access-Control-Allow-Origin': '*' }
-});
+const unsplash = createApi({
+    apiUrl: "http://localhost:5000/unsplash"
+})
 
 class SearchPhotos extends Component {
     constructor(props) {
@@ -19,32 +15,47 @@ class SearchPhotos extends Component {
         this.state = {
             isLoaded: false,
             images: [],
-            start: 1,
-            count: 30,
+            page: 1,
+            perPage: 30,
             error: false,
             searchQuery: ""
         }
     }
+
     componentDidMount() {
-        const { start, count } = this.state
+        const { page, perPage } = this.state
 
 
         const parsed = queryString.parse(window.location.search);
         this.setState({ searchQuery: parsed.query })
 
-        unsplash.search.photos(parsed.query, start, count)
-            .then(toJson)
-            .then(json => {
-                if (json.results.length > 0) {
-                    this.setState({ error: false, images: json.results })
-                    console.log(json)
-                } else if (json.results.length === 0) {
-                    this.setState({ error: true, isLoaded: true })
+        console.log(parsed.query);
+
+        unsplash.search.getPhotos({
+            query: parsed.query,
+            page,
+            perPage,
+        })
+            .then(result => {
+                console.log(result);
+                if (result.errors || result.response.response.results.length === 0) {
+                    this.setState({ 
+                        error: true, 
+                        isLoaded: true
+                    });
+                } else {
+                    this.setState({
+                        error: false,
+                        isLoaded: true,
+                        images: result.response.response.results
+                    })
                 }
             })
             .catch(err => {
-                console.log(err, 'there was an error')
-                this.setState({ isLoaded: true })
+                    this.setState({ 
+                        error: true, 
+                        isLoaded: true
+                    });
             })
     }
 
@@ -88,7 +99,7 @@ class SearchPhotos extends Component {
 
     render() {
         const { images, searchQuery } = this.state
-        let errMsg = this.state.error ? <h3>Whoops, "{searchQuery}" isn't in our photo album! Try searching something else.</h3> : null
+        let errMsg = this.state.error && <h3>Whoops, "{searchQuery}" isn't in our photo album! Try searching something else.</h3>
         return (
             <div style={{ width: '90%', margin: '20px auto', paddingTop: '76px' }}>
                 {errMsg}

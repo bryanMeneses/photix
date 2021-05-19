@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import { Carousel, Spinner } from 'react-bootstrap'
 import './Home.css'
-import Unsplash, { toJson } from 'unsplash-js';
+import { createApi } from 'unsplash-js';
 import { Link } from 'react-router-dom'
 
 
-const unsplash = new Unsplash({
-    applicationId: "a3d3bf11fb2edf1a7eb5f10a3f636a0559eba6dd199af83547d674f067d1f452",
-    secret: "ee0fb70bd9999de167f0b2fc0b86f026d48d713fe626d760d54f41246164ee7f",
-    headers: { 'Access-Control-Allow-Origin': '*' }
-});
-
+const unsplash = createApi({
+    apiUrl: process.env.API_URL
+})
 
 class Home extends Component {
     state = {
@@ -19,19 +16,24 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        unsplash.photos.getRandomPhoto({
-            count: '6',
+        unsplash.photos.getRandom({
+            count: 3,
             query: 'landscape'
         })
-            .then(toJson)
-            .then(json => {
-                this.setState({ randomImages: json, requestError: false })
+            .then(result => {
+                console.log(result);
+                if (result.errors) {
+                    console.log(result.errors);
+                    this.setState({ requestError: true })
+                } else {
+                    console.log(result);
+                    this.setState({ randomImages: result.response.response, requestError: false })
+                }
             })
             .catch(err => {
                 console.log(err);
                 this.setState({ requestError: true })
-            }
-            );
+            });
     }
     render() {
         const { randomImages, requestError } = this.state

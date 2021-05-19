@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import Unsplash, { toJson } from 'unsplash-js';
+import {createApi} from 'unsplash-js';
 import { Row, Col, Button, Spinner, OverlayTrigger, Tooltip } from 'react-bootstrap'
 
 
-const unsplash = new Unsplash({
-    applicationId: "a3d3bf11fb2edf1a7eb5f10a3f636a0559eba6dd199af83547d674f067d1f452",
-    secret: "ee0fb70bd9999de167f0b2fc0b86f026d48d713fe626d760d54f41246164ee7f",
-    headers: { 'Access-Control-Allow-Origin': '*' }
+const unsplash = createApi({
+    apiUrl: "http://localhost:9000/.netlify/functions/index/unsplash"
 });
 
 class Details extends Component {
@@ -80,18 +78,28 @@ class Details extends Component {
 
         return `${month} ${day}, ${year}`;
     }
+
     componentDidMount() {
         const { id } = this.props.match.params;
-        unsplash.photos.getPhoto(id)
-            .then(toJson)
-            .then(data => {
-                this.setState({ image: data })
+        unsplash.photos.get({
+            photoId: id
+        })
+            .then(result => {
+                console.log(result);
+                if (result.errors) {
+                    console.log(result.errors);
+                } else {
+                    this.setState({ image: result.response.response })
+                }
+
             })
             .catch(err => console.log(err));
     }
+
     addCommasToNum = num => {
         return String(num).replace(/(.)(?=(\d{3})+$)/g, '$1,')
     }
+    
     render() {
         const { image } = this.state;
 
