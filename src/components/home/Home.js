@@ -13,6 +13,7 @@ const Home = () => {
   const [requestError, setRequestError] = useState(false);
 
   useEffect(() => {
+    setRandomImages([]);
     // unsplash.photos
     //   .getRandom({
     //     count: 3,
@@ -20,18 +21,14 @@ const Home = () => {
     //   })
     //   .then((result) => {
     //     if (result.errors) {
-    //       // console.log(result.errors);
-    //       this.setState({ requestError: true });
+    //       setRequestError(true);
     //     } else {
-    //       this.setState({
-    //         randomImages: result.response.response,
-    //         requestError: false,
-    //       });
+    //       setRandomImages(result.response.response);
+    //       setRequestError(false);
     //     }
     //   })
     //   .catch((err) => {
-    //     // console.log(err);
-    //     this.setState({ requestError: true });
+    //     setRequestError(true);
     //   });
   }, []);
 
