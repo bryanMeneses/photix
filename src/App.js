@@ -13,12 +13,11 @@ import Details from './components/details/Details';
 import About from './components/about/About'
 
 
-function App() {
+const App = () => {
   return (
     <Router>
       <div className="App">
         <Header />
-
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/latest" component={Latest} />
